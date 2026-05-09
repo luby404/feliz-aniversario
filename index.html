@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário Ludmila 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Seção Hero -->
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>
+                    <span class="emoji-float">🎉</span>
+                    <span class="emoji-float">🎂</span>
+                    <span class="emoji-float">✨</span>
+                </h1>
+
+                
+                <img src="lu.jpg" alt="" class="lu_img">
+                <h1>Feliz Aniversário</h1>
+                <p style="font-size: 2.5rem; margin-top: 1rem;">
+                    <span style="color: var(--primary);">L</span><span style="color: var(--accent);">u</span><span style="color: var(--secondary);">d</span><span style="color: var(--tertiary);">m</span><span style="color: var(--primary);">i</span><span style="color: var(--accent);">l</span><span style="color: var(--secondary);">a</span>
+                </p>
+                <p style="font-size: 1.2rem; margin-top: 2rem; color: #666;">Seu dia especial merece algo especial! 💕</p>
+            </div>
+        </section>
+
+        <!-- Mensagens com Scroll -->
+        <section class="scroll-section">
+            <div class="card">
+                <div class="card-number">1</div>
+                <div class="image-placeholder">🌟</div>
+                <h2>Gratidão</h2>
+                <p>Obrigada por ser aquela amiga que está sempre lá, nos momentos felizes e nos difíceis. Sua presença ilumina qualquer dia cinzento!</p>
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="card">
+                <div class="card-number">2</div>
+                <div class="image-placeholder">😂</div>
+                <h2>Cumplicidade</h2>
+                <p>Das risadas até as conversas sérias, cada momento contigo é uma memória valiosa. Você faz parte das pessoas que tornam a vida mais leve e divertida!</p>
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="card">
+                <div class="card-number">3</div>
+                <div class="image-placeholder">💪</div>
+                <h2>Força</h2>
+                <p>Sua força de vontade e determinação são inspiradoras. Quando você se propõe algo, você conquista! Isso é simplesmente admirável!</p>
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="card">
+                <div class="card-number">4</div>
+                <div class="image-placeholder">🌈</div>
+                <h2>Bondade</h2>
+                <p>Você tem um coração enorme. A forma como você cuida das pessoas ao seu redor, com genuinidade e carinho, faz toda diferença no mundo!</p>
+            </div>
+        </section>
+
+        <section class="scroll-section">
+            <div class="card">
+                <div class="card-number">5</div>
+                <div class="image-placeholder">🚀</div>
+                <h2>Potencial</h2>
+                <p>Este novo ano é seu! Todos os seus sonhos, metas e conquistas estão ali esperando. Você é capaz de tudo o que se propuser a fazer!</p>
+            </div>
+        </section>
+
+        <!-- Mensagem Final -->
+        <section class="final-message">
+            <div class="final-content">
+                <h2>🎂 Parabéns, Ludmila! 🎂</h2>
+                <p>Que este ano seja repleto de alegrias, sucesso e muitos momentos especiais ao lado de quem você ama!</p>
+                <p style="font-size: 1.5rem; font-weight: bold; margin-top: 2rem;">Você merece toda felicidade do mundo! ✨💕</p>
+                <p>Do seu amigo <strong>Ricardo Cayoca</strong></p>
+            </div>
+        </section>
+    </div>
+
+    <div class="scroll-hint">
+        <p style="font-size: 1.2rem; color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">↓ Scroll para continuar ↓</p>
+    </div>
+
+    <script>
+        // Criar partículas animadas no fundo
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.textContent = ['🎉', '✨', '🎂', '💕', '🌟'][Math.floor(Math.random() * 5)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            particle.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => particle.remove(), 6000);
+        }
+
+        // Gerar partículas continuamente
+        setInterval(createParticle, 300);
+
+        // Animação de scroll - revelar cards
+        const cards = document.querySelectorAll('.card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInFromBottom 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => observer.observe(card));
+
+        // Confete na seção final
+        const finalSection = document.querySelector('.final-message');
+        const scrollHint = document.querySelector('.scroll-hint');
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const finalPosition = finalSection.offsetTop;
+
+            if (scrollPosition >= finalPosition) {
+                scrollHint.classList.add('hidden');
+                if (scrollPosition >= finalPosition && scrollPosition <= finalPosition + 500) {
+                    createConfetti();
+                }
+            } else {
+                scrollHint.classList.remove('hidden');
+            }
+        });
+
+        function createConfetti() {
+            for (let i = 0; i < 5; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '0px';
+                confetti.style.background = ['var(--primary)', 'var(--secondary)', 'var(--tertiary)', 'var(--accent)'][Math.floor(Math.random() * 4)];
+                confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Página inicial - criar mais confete
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createParticle(), i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
