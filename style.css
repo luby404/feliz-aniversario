@@ -138,8 +138,9 @@ body {
 }
 
 .lu_img {
-    max-width: 32%;
+    max-width: 42%;
     border-radius: 50%;
+    animation: bounce 2s ease-in-out infinite;
 }
 
 @keyframes bounce {
@@ -442,6 +443,9 @@ body {
 
     .final-message p {
         font-size: 1.1rem;
+    }
+    .lu_img{
+        max-width: 62%;
     }
 }
 
